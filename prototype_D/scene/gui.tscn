@@ -1,0 +1,72 @@
+[gd_scene load_steps=4 format=3 uid="uid://dp4ahu3bd3sra"]
+
+[ext_resource type="Script" path="res://script/gui.cs" id="1_buh55"]
+[ext_resource type="FontFile" uid="uid://fqjff1o1lgb4" path="res://assets/Kenney Pixel.ttf" id="2_qujun"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_4tllp"]
+font = ExtResource("2_qujun")
+font_size = 64
+
+[node name="GUI" type="CanvasLayer"]
+script = ExtResource("1_buh55")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 8.0
+offset_top = 73.0
+offset_right = 160.0
+offset_bottom = 121.0
+text = "Âmes  : "
+label_settings = SubResource("LabelSettings_4tllp")
+
+[node name="count" type="Label" parent="Label"]
+layout_mode = 0
+offset_left = 149.0
+offset_top = 2.0
+offset_right = 288.0
+offset_bottom = 50.0
+text = "0
+"
+label_settings = SubResource("LabelSettings_4tllp")
+
+[node name="pointDeVieText" type="Label" parent="."]
+offset_left = 10.0
+offset_top = 7.0
+offset_right = 262.0
+offset_bottom = 55.0
+text = "Point de vie  : "
+label_settings = SubResource("LabelSettings_4tllp")
+
+[node name="pointDeVie" type="Label" parent="pointDeVieText"]
+layout_mode = 0
+offset_left = 261.0
+offset_top = 3.0
+offset_right = 413.0
+offset_bottom = 51.0
+text = "100
+"
+label_settings = SubResource("LabelSettings_4tllp")
+
+[node name="level" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -126.0
+offset_right = 126.0
+offset_bottom = 48.0
+grow_horizontal = 2
+text = "Niveau  : "
+label_settings = SubResource("LabelSettings_4tllp")
+
+[node name="val" type="Label" parent="level"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 47.0
+offset_top = 5.0
+offset_right = 199.0
+offset_bottom = 53.0
+grow_horizontal = 2
+text = "1
+"
+label_settings = SubResource("LabelSettings_4tllp")

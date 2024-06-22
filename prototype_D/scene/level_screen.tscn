@@ -1,0 +1,149 @@
+[gd_scene load_steps=6 format=3 uid="uid://c2y43kpcfelrq"]
+
+[ext_resource type="Script" path="res://script/level_screen.cs" id="1_3ftjr"]
+[ext_resource type="PackedScene" uid="uid://c6xjdaf2607rh" path="res://scene/level_1.tscn" id="2_vfus8"]
+[ext_resource type="FontFile" uid="uid://fqjff1o1lgb4" path="res://assets/Kenney Pixel.ttf" id="2_xihiq"]
+[ext_resource type="PackedScene" uid="uid://vjcnnwg23w00" path="res://scene/player.tscn" id="3_bkt26"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_y4woe"]
+font = ExtResource("2_xihiq")
+font_size = 64
+font_color = Color(0, 0, 0, 1)
+
+[node name="levelScreen" type="CanvasLayer"]
+script = ExtResource("1_3ftjr")
+levelScene = ExtResource("2_vfus8")
+playerScene = ExtResource("3_bkt26")
+metadata/_edit_horizontal_guides_ = [-58.0]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.192157, 0.768627, 0.54902, 1)
+
+[node name="vie" type="Button" parent="."]
+offset_left = 176.0
+offset_top = 239.0
+offset_right = 676.0
+offset_bottom = 295.0
+theme_override_fonts/font = ExtResource("2_xihiq")
+theme_override_font_sizes/font_size = 64
+text = "Améliorer la vie  (inactif)"
+
+[node name="ames" type="Label" parent="vie"]
+layout_mode = 0
+offset_left = -98.0
+offset_top = -84.0
+offset_right = 214.0
+offset_bottom = -36.0
+text = "Âmes requises : "
+label_settings = SubResource("LabelSettings_y4woe")
+
+[node name="val" type="Label" parent="vie/ames"]
+layout_mode = 0
+offset_left = 324.0
+offset_right = 452.0
+offset_bottom = 48.0
+text = "10"
+label_settings = SubResource("LabelSettings_y4woe")
+
+[node name="degat" type="Button" parent="."]
+offset_left = 190.0
+offset_top = 458.0
+offset_right = 866.0
+offset_bottom = 514.0
+theme_override_fonts/font = ExtResource("2_xihiq")
+theme_override_font_sizes/font_size = 64
+text = "Améliorer les dommages  (inactif)"
+
+[node name="ames" type="Label" parent="degat"]
+layout_mode = 0
+offset_left = -120.0
+offset_top = -87.0
+offset_right = 200.0
+offset_bottom = -39.0
+text = "Âmes requises  : "
+label_settings = SubResource("LabelSettings_y4woe")
+
+[node name="val" type="Label" parent="degat/ames"]
+layout_mode = 0
+offset_left = 327.0
+offset_right = 455.0
+offset_bottom = 48.0
+text = "10"
+label_settings = SubResource("LabelSettings_y4woe")
+
+[node name="vitesse" type="Button" parent="."]
+offset_left = 205.0
+offset_top = 670.0
+offset_right = 789.0
+offset_bottom = 726.0
+theme_override_fonts/font = ExtResource("2_xihiq")
+theme_override_font_sizes/font_size = 64
+text = "Améliorer la vitesse (inactif)"
+
+[node name="ames" type="Label" parent="vitesse"]
+layout_mode = 0
+offset_left = -120.0
+offset_top = -87.0
+offset_right = 200.0
+offset_bottom = -39.0
+text = "Âmes requises  : "
+label_settings = SubResource("LabelSettings_y4woe")
+
+[node name="val" type="Label" parent="vitesse/ames"]
+layout_mode = 0
+offset_left = 327.0
+offset_right = 455.0
+offset_bottom = 48.0
+text = "10"
+label_settings = SubResource("LabelSettings_y4woe")
+
+[node name="ames" type="Label" parent="."]
+offset_left = 38.0
+offset_top = 32.0
+offset_right = 166.0
+offset_bottom = 80.0
+text = "Âmes possédées : "
+label_settings = SubResource("LabelSettings_y4woe")
+
+[node name="val" type="Label" parent="ames"]
+layout_mode = 0
+offset_left = 367.0
+offset_top = 2.0
+offset_right = 495.0
+offset_bottom = 50.0
+text = "0"
+label_settings = SubResource("LabelSettings_y4woe")
+
+[node name="continuer" type="Button" parent="."]
+offset_left = 790.0
+offset_top = 249.0
+offset_right = 1230.0
+offset_bottom = 357.0
+theme_override_fonts/font = ExtResource("2_xihiq")
+theme_override_font_sizes/font_size = 128
+text = "Continuer
+"
+
+[node name="level" type="Label" parent="."]
+offset_left = 893.0
+offset_top = 42.0
+offset_right = 1045.0
+offset_bottom = 90.0
+text = "Niveau : "
+label_settings = SubResource("LabelSettings_y4woe")
+
+[node name="val" type="Label" parent="level"]
+layout_mode = 0
+offset_left = 167.0
+offset_top = 2.0
+offset_right = 295.0
+offset_bottom = 50.0
+text = "0"
+label_settings = SubResource("LabelSettings_y4woe")
+
+[connection signal="pressed" from="continuer" to="." method="_on_continuer_pressed"]
