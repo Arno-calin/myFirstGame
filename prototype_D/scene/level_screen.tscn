@@ -25,13 +25,14 @@ grow_vertical = 2
 color = Color(0.192157, 0.768627, 0.54902, 1)
 
 [node name="vie" type="Button" parent="."]
-offset_left = 176.0
-offset_top = 239.0
-offset_right = 676.0
-offset_bottom = 295.0
+offset_left = 152.0
+offset_top = 208.0
+offset_right = 519.0
+offset_bottom = 312.0
 theme_override_fonts/font = ExtResource("2_xihiq")
 theme_override_font_sizes/font_size = 64
-text = "Améliorer la vie  (inactif)"
+text = "Améliorer 
+la  vie "
 
 [node name="ames" type="Label" parent="vie"]
 layout_mode = 0
@@ -51,13 +52,14 @@ text = "10"
 label_settings = SubResource("LabelSettings_y4woe")
 
 [node name="degat" type="Button" parent="."]
-offset_left = 190.0
-offset_top = 458.0
-offset_right = 866.0
-offset_bottom = 514.0
+offset_left = 725.0
+offset_top = 200.0
+offset_right = 1144.0
+offset_bottom = 304.0
 theme_override_fonts/font = ExtResource("2_xihiq")
 theme_override_font_sizes/font_size = 64
-text = "Améliorer les dommages  (inactif)"
+text = "Améliorer les 
+dommages "
 
 [node name="ames" type="Label" parent="degat"]
 layout_mode = 0
@@ -77,15 +79,43 @@ text = "10"
 label_settings = SubResource("LabelSettings_y4woe")
 
 [node name="vitesse" type="Button" parent="."]
-offset_left = 205.0
-offset_top = 670.0
-offset_right = 789.0
-offset_bottom = 726.0
+offset_left = 138.0
+offset_top = 423.0
+offset_right = 553.0
+offset_bottom = 527.0
 theme_override_fonts/font = ExtResource("2_xihiq")
 theme_override_font_sizes/font_size = 64
-text = "Améliorer la vitesse (inactif)"
+text = "Améliorer la
+ vitesse "
 
 [node name="ames" type="Label" parent="vitesse"]
+layout_mode = 0
+offset_left = -91.0
+offset_top = -77.0
+offset_right = 229.0
+offset_bottom = -29.0
+text = "Âmes requises  : "
+label_settings = SubResource("LabelSettings_y4woe")
+
+[node name="val" type="Label" parent="vitesse/ames"]
+layout_mode = 0
+offset_left = 327.0
+offset_right = 455.0
+offset_bottom = 48.0
+text = "10"
+label_settings = SubResource("LabelSettings_y4woe")
+
+[node name="stun" type="Button" parent="."]
+offset_left = 716.0
+offset_top = 415.0
+offset_right = 1161.0
+offset_bottom = 519.0
+theme_override_fonts/font = ExtResource("2_xihiq")
+theme_override_font_sizes/font_size = 64
+text = "Améliorer 
+l'etourdissement "
+
+[node name="ames" type="Label" parent="stun"]
 layout_mode = 0
 offset_left = -120.0
 offset_top = -87.0
@@ -94,7 +124,7 @@ offset_bottom = -39.0
 text = "Âmes requises  : "
 label_settings = SubResource("LabelSettings_y4woe")
 
-[node name="val" type="Label" parent="vitesse/ames"]
+[node name="val" type="Label" parent="stun/ames"]
 layout_mode = 0
 offset_left = 327.0
 offset_right = 455.0
@@ -116,14 +146,14 @@ offset_left = 367.0
 offset_top = 2.0
 offset_right = 495.0
 offset_bottom = 50.0
-text = "0"
+text = "10"
 label_settings = SubResource("LabelSettings_y4woe")
 
 [node name="continuer" type="Button" parent="."]
-offset_left = 790.0
-offset_top = 249.0
-offset_right = 1230.0
-offset_bottom = 357.0
+offset_left = 500.0
+offset_top = 573.0
+offset_right = 940.0
+offset_bottom = 681.0
 theme_override_fonts/font = ExtResource("2_xihiq")
 theme_override_font_sizes/font_size = 128
 text = "Continuer
@@ -146,4 +176,8 @@ offset_bottom = 50.0
 text = "0"
 label_settings = SubResource("LabelSettings_y4woe")
 
+[connection signal="pressed" from="vie" to="." method="_on_vie_pressed"]
+[connection signal="pressed" from="degat" to="." method="_on_degat_pressed"]
+[connection signal="pressed" from="vitesse" to="." method="_on_vitesse_pressed"]
+[connection signal="pressed" from="stun" to="." method="_on_stun_pressed"]
 [connection signal="pressed" from="continuer" to="." method="_on_continuer_pressed"]

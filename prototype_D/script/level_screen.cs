@@ -5,9 +5,15 @@ public partial class level_screen : CanvasLayer
 {
 	[Export] private PackedScene levelScene;
 	private level_1 level;
+	private int wave = 0;
 	[Export] private PackedScene playerScene;
 	private player joueur;
-	public int score;
+	public int scoreJoueur = 10;
+	public int vieJoueur = 50;
+	public int degatJoueur = 5;
+	public float vitesseJoueur = 300.0f;
+	public int stunJoueur = 300;
+	private int vie = 100;
 	public override void _Ready()
 	{
 		
@@ -18,22 +24,84 @@ public partial class level_screen : CanvasLayer
 	}
 	private void _on_continuer_pressed()
 	{
+		wave++;
 		level = levelScene.Instantiate<level_1>();
 		joueur = playerScene.Instantiate<player>();
-		joueur.Instancier(score);
-		level.Instancier(joueur);
+		joueur.Instancier(scoreJoueur, vieJoueur, degatJoueur, vitesseJoueur, stunJoueur);
+		level.Instancier(joueur, wave, vie);
 		this.GetParent().AddChild(level);
 		Visible = false;
-		// GetTree().ChangeSceneToFile("res://scene/level_1.tscn");
 	}
-	public void getPlayer(player p)
+	public void getPlayer(player p, int vie)
 	{
 		joueur = p;
-		Modifcore(joueur.score);
-		score = joueur.score;
+		nextLevelInfo(joueur.score, wave);
+		scoreJoueur = joueur.score;
+		vieJoueur = joueur.lifePointMax;
+		degatJoueur = joueur.damage;
+		vitesseJoueur = joueur.speed;
+		stunJoueur = joueur.stunMax;
+		this.vie = vie;
 	}
-	public void Modifcore(int val)
+	public void nextLevelInfo(int score, int level)
 	{
-		GetNode<Label>("ames/val").Text = val.ToString();
+		GetNode<Label>("ames/val").Text = score.ToString();
+		GetNode<Label>("level/val").Text = level.ToString();
+	}
+	public void nextLevelInfo(int score)
+	{
+		GetNode<Label>("ames/val").Text = score.ToString();
+	}
+	private void _on_vie_pressed()
+	{
+		if (scoreJoueur >=  getSoul("vie/ames/val"))
+		{
+			scoreJoueur -= getSoul("vie/ames/val");
+			vieJoueur += 10;
+			soul("vie/ames/val", getSoul("vie/ames/val") + 5);
+		}
+		nextLevelInfo(scoreJoueur);
+	}
+	private void _on_degat_pressed()
+	{
+				if (scoreJoueur >=  getSoul("degat/ames/val"))
+		{
+			scoreJoueur -= getSoul("degat/ames/val");
+			degatJoueur += 1;
+			soul("degat/ames/val", getSoul("degat/ames/val") + 5);
+		}
+		nextLevelInfo(scoreJoueur);
+	}
+	private void _on_vitesse_pressed()
+	{
+		if (scoreJoueur >=  getSoul("vitesse/ames/val"))
+		{
+			scoreJoueur -= getSoul("vitesse/ames/val");
+			vitesseJoueur += 50.0f;
+			soul("vitesse/ames/val", getSoul("vitesse/ames/val") + 5);
+		}
+		nextLevelInfo(scoreJoueur);
+	}
+	private void _on_stun_pressed()
+	{
+		if (scoreJoueur >=  getSoul("stun/ames/val") && stunJoueur > 50)
+		{
+			scoreJoueur -= getSoul("stun/ames/val");
+			stunJoueur -= 25;
+			soul("stun/ames/val", getSoul("stun/ames/val") + 5);
+		}
+		else if (stunJoueur <= 50)
+		{
+			GetNode<Label>("stun").Text = "Max atteint";
+		}
+		nextLevelInfo(scoreJoueur);
+	}
+	private void soul(string path, int newVal)
+	{
+		GetNode<Label>(path).Text = newVal.ToString();
+	}
+	private int getSoul(string path)
+	{
+		return Convert.ToInt16(GetNode<Label>(path).Text);
 	}
 }

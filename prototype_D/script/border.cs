@@ -13,5 +13,7 @@ public partial class border : Area2D
 	{
 		if (body is player)
 			(body as player).Position = new Vector2(alea.Next(10, 1270), alea.Next(10, 758));
+		if (body is ennemy)
+			(body as ennemy).QueueFree();
 	}
 }

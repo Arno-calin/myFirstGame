@@ -11,4 +11,8 @@ public partial class gui : CanvasLayer
 	{
 		GetNode<Label>("pointDeVieText/pointDeVie").Text = val.ToString();
 	}
+	public void level(int val)
+	{
+		GetNode<Label>("level/val").Text = val.ToString();
+	}
 }

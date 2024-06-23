@@ -12,11 +12,12 @@ enemyScene = ExtResource("2_5vfqb")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 4
+collision_mask = 3
 script = ExtResource("1_ii8i3")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
 scale = Vector2(37.3466, 1)
-polygon = PackedVector2Array(36.9244, 863, 36.3353, -58, -3.18637, -82, -2.32953, 828, 36.8441, 834, 34.4878, 777, -0.321314, 778, -0.187433, -10, 34.4878, -7, 34.6484, 775)
+polygon = PackedVector2Array(38.9058, 1490, 47.6884, -359, -12.4509, -319, -12.5848, 1033, 51.571, 1012, 37.2725, 871, -2.54374, 858, -2.54374, -90, 37.5135, -82, 37.9419, 830)
 
 [node name="Treasure" parent="." instance=ExtResource("3_o35er")]
 position = Vector2(652, 350)

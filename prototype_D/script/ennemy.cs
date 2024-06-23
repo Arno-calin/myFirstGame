@@ -3,11 +3,11 @@ using System;
 
 public partial class ennemy : CharacterBody2D
 {
-	public int danger = 1;
-	public int explosion = 10;
-	public int lifePoint = 10;
-	public int damage = 5;
-	public int speed = 100;
+	public int explosion;
+	public int lifePoint;
+	public int damage;
+	public int speed;
+	public int push = -10;
 	
 	public treasure target; 
 	public Vector2 velocity;
@@ -18,7 +18,13 @@ public partial class ennemy : CharacterBody2D
 		velocity = new Vector2(target.Position.X - Position.X, target.Position.Y - Position.Y);
 		velocity = velocity / (1000 / speed);
 	}
-	
+	public void Instancier(int explo, int life, int dam, int weed)
+	{
+		explosion = explo;
+		lifePoint = life;
+		damage = dam;
+		speed = weed;
+	}
 	public override void _Process(double delta)
 	{
 		if (lifePoint <= 0)

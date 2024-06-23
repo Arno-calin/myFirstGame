@@ -17,6 +17,7 @@ public partial class treasure : Sprite2D
 		if (body is player)
 		{
 			player p = body as player;
+			p.lifePoint = p.lifePointMax;
 		}
 		else if (body is ennemy)
 		{
@@ -25,5 +26,10 @@ public partial class treasure : Sprite2D
 			GetParent().GetNode<gui>("GUI").pv(pointLife);
 			foe.QueueFree();
 		}
+	}
+	public void setPV(int val)
+	{
+		pointLife = val;
+		GetParent().GetNode<gui>("GUI").pv(pointLife);
 	}
 }
