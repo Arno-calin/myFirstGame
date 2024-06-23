@@ -70,3 +70,14 @@ grow_horizontal = 2
 text = "1
 "
 label_settings = SubResource("LabelSettings_4tllp")
+
+[node name="fullHeal" type="Label" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -160.0
+offset_bottom = 48.0
+grow_horizontal = 0
+text = "Soigné !!!
+"
+label_settings = SubResource("LabelSettings_4tllp")

@@ -18,6 +18,7 @@ public partial class treasure : Sprite2D
 		{
 			player p = body as player;
 			p.lifePoint = p.lifePointMax;
+			GetParent().GetNode<Label>("GUI/fullHeal").Visible = true;
 		}
 		else if (body is ennemy)
 		{

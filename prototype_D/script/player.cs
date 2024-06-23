@@ -3,7 +3,7 @@ using System;
 
 public partial class player : CharacterBody2D
 {
-	AnimatedSprite2D animatedSprite;
+	public AnimatedSprite2D animatedSprite;
 	public int lifePoint;
 	public int lifePointMax;
 	public int damage;
@@ -32,10 +32,12 @@ public partial class player : CharacterBody2D
 	{
 		if (lifePoint <= 0)
 		{
+			animatedSprite.Play("dead");
 			stun--;
 			if (stun == 0)
 			{
 				lifePoint = lifePointMax;
+				GetParent().GetNode<Label>("GUI/fullHeal").Visible = true;
 				stun = stunMax;
 			}
 		}
@@ -91,6 +93,7 @@ public partial class player : CharacterBody2D
 			if(collision != null && collision.GetCollider() is ennemy)
 			{
 				ennemy foe = collision.GetCollider() as ennemy;
+				GetParent().GetNode<Label>("GUI/fullHeal").Visible = false;
 				lifePoint -= foe.damage;
 				foe.lifePoint -= damage;
 				if (foe.lifePoint <= 0)
