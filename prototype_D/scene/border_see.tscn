@@ -1,0 +1,52 @@
+[gd_scene load_steps=10 format=3 uid="uid://csle0rusndbl1"]
+
+[ext_resource type="Texture2D" uid="uid://cpsgkkdcxbno0" path="res://assets/decor/fence.png" id="1_barw3"]
+[ext_resource type="Texture2D" uid="uid://bnm5f6qh030t8" path="res://assets/decor/fenceMid.png" id="2_s4k2g"]
+[ext_resource type="Texture2D" uid="uid://bj00qxd50dlt7" path="res://assets/decor/fluidBrown.png" id="3_10mv2"]
+[ext_resource type="Texture2D" uid="uid://jh3xuf4qkjgi" path="res://assets/decor/signpost.png" id="4_67twj"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bs4vm"]
+texture = ExtResource("1_barw3")
+texture_region_size = Vector2i(64, 45)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -23.75, 32, -23.75, 32, 23.75, -32, 23.25)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_w5i37"]
+texture = ExtResource("2_s4k2g")
+texture_region_size = Vector2i(64, 45)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -23.75, 32, -23.75, 32, 23.75, -32, 23.25)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qtovc"]
+texture = ExtResource("3_10mv2")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_23uco"]
+texture = ExtResource("4_67twj")
+texture_region_size = Vector2i(12, 55)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-6, -27.25, 6, -26.25, 6.5, 27.75, -7, 27.25)
+
+[sub_resource type="TileSet" id="TileSet_4qo0c"]
+tile_size = Vector2i(64, 64)
+physics_layer_0/collision_layer = 8
+sources/0 = SubResource("TileSetAtlasSource_bs4vm")
+sources/1 = SubResource("TileSetAtlasSource_w5i37")
+sources/2 = SubResource("TileSetAtlasSource_qtovc")
+sources/3 = SubResource("TileSetAtlasSource_23uco")
+
+[node name="borderSee" type="TileMap"]
+scale = Vector2(5, 5)
+tile_set = SubResource("TileSet_4qo0c")
+format = 2
+layer_0/tile_data = PackedInt32Array(-589841, 2, 0, -589840, 0, 0, -589839, 0, 0, -589838, 0, 0, -589837, 0, 0, -589836, 0, 0, -589835, 0, 0, -589834, 0, 0, -589833, 0, 0, -589832, 0, 0, -589831, 0, 0, -589830, 0, 0, -589829, 0, 0, -589828, 0, 0, -589827, 0, 0, -589826, 0, 0, -589825, 0, 0, -655360, 0, 0, -655359, 0, 0, -655358, 0, 0, -655357, 0, 0, -655356, 0, 0, -655355, 0, 0, -655354, 0, 0, -655353, 0, 0, -655352, 0, 0, -655351, 0, 0, -655350, 0, 0, -655349, 0, 0, -655348, 0, 0, -655347, 0, 0, -655346, 0, 0, -655345, 0, 0, -655344, 0, 0, -655343, 0, 0, -655342, 0, 0, -655341, 0, 0, -655340, 2, 0, -524305, 0, 1610612736, -458769, 0, 1610612736, -393233, 0, 1610612736, -327697, 0, 1610612736, -262161, 0, 1610612736, -196625, 0, 1610612736, -131089, 0, 1610612736, -65553, 0, 1610612736, -17, 0, 1610612736, 65519, 0, 1610612736, 131055, 0, 1610612736, 196591, 0, 1610612736, 262127, 0, 1610612736, 327663, 0, 1610612736, 393199, 0, 1610612736, 458735, 0, 1610612736, 524271, 0, 1610612736, 589807, 0, 1610612736, 655343, 0, 1610612736, 720879, 0, 1610612736, -589804, 0, 1610612736, -524268, 0, 1610612736, -458732, 0, 1610612736, -393196, 0, 1610612736, -327660, 0, 1610612736, -262124, 0, 1610612736, -196588, 0, 1610612736, -131052, 0, 1610612736, -65516, 0, 1610612736, 20, 0, 1610612736, 65556, 0, 1610612736, 131092, 0, 1610612736, 196628, 0, 1610612736, 262164, 0, 1610612736, 327700, 0, 1610612736, 393236, 0, 1610612736, 458772, 0, 1610612736, 524308, 0, 1610612736, 589844, 0, 1610612736, 655380, 0, 1610612736, 786415, 2, 0, 720916, 2, 0, 786416, 0, 0, 786417, 0, 0, 786418, 0, 0, 786419, 0, 0, 786420, 0, 0, 786421, 0, 0, 786422, 0, 0, 786423, 0, 0, 786424, 0, 0, 786425, 0, 0, 786426, 0, 0, 786427, 0, 0, 786428, 0, 0, 786429, 0, 0, 786430, 0, 0, 786431, 0, 0, 720896, 0, 0, 720897, 0, 0, 720898, 0, 0, 720899, 0, 0, 720900, 0, 0, 720901, 0, 0, 720902, 0, 0, 720903, 0, 0, 720904, 0, 0, 720905, 0, 0, 720906, 0, 0, 720907, 0, 0, 720908, 0, 0, 720909, 0, 0, 720910, 0, 0, 720911, 0, 0, 720912, 0, 0, 720913, 0, 0, 720914, 0, 0, 720915, 0, 0)

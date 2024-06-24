@@ -16,6 +16,8 @@ public partial class level_1 : Node2D
 	{
 		alea = new Random();
 		this.AddChild(joueur);
+		GetNode("Area2D").GetNode<CollisionPolygon2D>("CollisionPolygon2D").Scale += new Vector2(invocation * 33.5f, invocation * 1f);
+		GetNode("Treasure").GetNode<Camera2D>("Camera2D").Zoom = new Vector2(1 - invocation * 0.1f,1 - invocation * 0.1f);
 	}
 	public void Instancier(player p, int dif, int pv)
 	{
@@ -33,13 +35,13 @@ public partial class level_1 : Node2D
 			foe.Instancier(alea.Next(1, 11), alea.Next(5, 15),alea.Next(5, 15),alea.Next(10, 101));
 			int posXY = alea.Next(4);
 			if (posXY == 0)
-				foe.Position = new Vector2(0, alea.Next(0, 768));
-			if (posXY == 1)
-				foe.Position = new Vector2(alea.Next(0, 1280), 768);
-			if (posXY == 2)
-				foe.Position = new Vector2(1280, alea.Next(0, 768));
-			if (posXY == 3)
-				foe.Position = new Vector2(alea.Next(0, 1280), 0);
+				foe.Position = new Vector2(0-invocation*100, alea.Next(0-invocation*50, 768+invocation*50));
+			else if (posXY == 1)
+				foe.Position = new Vector2(alea.Next(0-invocation*100, 1280+invocation*100), 768+invocation*50);
+			else if (posXY == 2)
+				foe.Position = new Vector2(1280+invocation*100, alea.Next(0-invocation*50, 768+invocation*50));
+			else if (posXY == 3)
+				foe.Position = new Vector2(alea.Next(0-invocation*100, 1280+invocation*100), 0-invocation*50);
 			count = 0;
 			countLevel++;
 			this.GetNode<Node2D>("ennemies").AddChild(foe);

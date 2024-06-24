@@ -1,29 +1,46 @@
-[gd_scene load_steps=6 format=3 uid="uid://c6xjdaf2607rh"]
+[gd_scene load_steps=9 format=3 uid="uid://c6xjdaf2607rh"]
 
 [ext_resource type="Script" path="res://script/level_1.cs" id="1_g65w2"]
 [ext_resource type="Script" path="res://script/border.cs" id="1_ii8i3"]
 [ext_resource type="PackedScene" uid="uid://dv7gxfkg0b2sq" path="res://scene/ennemy.tscn" id="2_5vfqb"]
 [ext_resource type="PackedScene" uid="uid://bby6rb0o5npdb" path="res://scene/treasure.tscn" id="3_o35er"]
 [ext_resource type="PackedScene" uid="uid://dp4ahu3bd3sra" path="res://scene/gui.tscn" id="6_6tbno"]
+[ext_resource type="PackedScene" uid="uid://csle0rusndbl1" path="res://scene/border_see.tscn" id="6_50xsr"]
+[ext_resource type="PackedScene" uid="uid://d2w1rq1cwfxwu" path="res://scene/bonus.tscn" id="7_m8o8x"]
+[ext_resource type="PackedScene" uid="uid://cetjwfdemqqy3" path="res://scene/bonus2.tscn" id="8_2x8iu"]
 
 [node name="Level1" type="Node2D"]
 script = ExtResource("1_g65w2")
 enemyScene = ExtResource("2_5vfqb")
 
 [node name="Area2D" type="Area2D" parent="."]
+position = Vector2(645, 388)
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_ii8i3")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
-scale = Vector2(37.3466, 1)
-polygon = PackedVector2Array(38.9058, 1490, 47.6884, -359, -12.4509, -319, -12.5848, 1033, 51.571, 1012, 37.2725, 871, -2.54374, 858, -2.54374, -90, 37.5135, -82, 37.9419, 830)
+scale = Vector2(40, 1.071)
+polygon = PackedVector2Array(19.4127, 491, 17.9668, -427, -19.0111, -424, -18.5291, 420, 20.8319, 423, 17.11, 387, -17.7258, 395, -17.5116, -401, 17.2974, -394, 17.3778, 372)
 
 [node name="Treasure" parent="." instance=ExtResource("3_o35er")]
-position = Vector2(652, 350)
+position = Vector2(641, 384)
+
+[node name="Camera2D" type="Camera2D" parent="Treasure"]
+zoom = Vector2(0.3, 0.3)
 
 [node name="GUI" parent="." instance=ExtResource("6_6tbno")]
 
 [node name="ennemies" type="Node2D" parent="."]
+
+[node name="borderSee" parent="." instance=ExtResource("6_50xsr")]
+
+[node name="Bonus" type="Node2D" parent="."]
+
+[node name="Bonus" parent="Bonus" instance=ExtResource("7_m8o8x")]
+position = Vector2(2568, 1486)
+
+[node name="Bonus2" parent="Bonus" instance=ExtResource("8_2x8iu")]
+position = Vector2(-1676, -1022)
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

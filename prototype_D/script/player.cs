@@ -12,7 +12,10 @@ public partial class player : CharacterBody2D
 	
 	private int stun;
 	public int stunMax;
-
+	
+	public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
+	public bool isGravity = false;
+	
 	public override void _Ready()
 	{
 		animatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
@@ -30,6 +33,7 @@ public partial class player : CharacterBody2D
 	}
 	public override void _PhysicsProcess(double delta)
 	{
+
 		if (lifePoint <= 0)
 		{
 			animatedSprite.Play("dead");
@@ -41,7 +45,13 @@ public partial class player : CharacterBody2D
 				stun = stunMax;
 			}
 		}
-		
+		else if (!IsOnFloor() && isGravity)
+		{
+			Vector2 velocity = Velocity;
+			velocity.Y += gravity * (float) delta;
+			animatedSprite.Play("dead");
+			MoveAndCollide(velocity);
+		}
 		else
 		{
 			Vector2 velocity = Velocity;

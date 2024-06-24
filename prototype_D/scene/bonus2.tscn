@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://cetjwfdemqqy3"]
+
+[ext_resource type="Texture2D" uid="uid://dnuyevfkhbksr" path="res://assets/treasure/blockRed_puzzle.png" id="1_8ty4a"]
+[ext_resource type="Script" path="res://script/bonus2.cs" id="2_nmfau"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_skxc0"]
+size = Vector2(64, 64)
+
+[node name="Bonus2" type="Sprite2D"]
+texture = ExtResource("1_8ty4a")
+script = ExtResource("2_nmfau")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -0.666667)
+shape = SubResource("RectangleShape2D_skxc0")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
