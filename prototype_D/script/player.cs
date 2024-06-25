@@ -15,6 +15,8 @@ public partial class player : CharacterBody2D
 	
 	public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
 	public bool isGravity = false;
+	public bool isonFloor = false;
+	public bool up = false;
 	
 	public override void _Ready()
 	{
@@ -45,22 +47,27 @@ public partial class player : CharacterBody2D
 				stun = stunMax;
 			}
 		}
-		else if (!IsOnFloor() && isGravity)
-		{
-			Vector2 velocity = Velocity;
-			velocity.Y += gravity * (float) delta;
-			animatedSprite.Play("dead");
-			MoveAndCollide(velocity);
-		}
+
 		else
 		{
 			Vector2 velocity = Velocity;
 			Vector2 direction = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
 			
-			if (direction != Vector2.Zero)
+			if (isonFloor)
 			{
-				velocity.X = direction.X * speed;
-				velocity.Y = direction.Y * speed;
+				velocity.Y = gravity * (float) delta * speed;
+			}
+			else if (direction != Vector2.Zero)
+			{
+				if (isGravity)
+					velocity.X = direction.X * speed;
+				else if (up)
+					velocity.Y = -Math.Abs(direction.Y * speed);
+				else
+				{
+					velocity.X = direction.X * speed;
+					velocity.Y = direction.Y * speed;
+				} 
 				animatedSprite.Play("walk");
 				if (direction.X > 0)
 				{
@@ -89,7 +96,6 @@ public partial class player : CharacterBody2D
 						Rotation = 0;
 					}
 				}
-			
 			}
 			else
 			{
@@ -112,6 +118,13 @@ public partial class player : CharacterBody2D
 					GetParent().GetNode<gui>("GUI").score(score);
 				}
 				MoveAndCollide(foe.push * velocity * (float)delta);
+			}
+			if (isGravity)
+			{
+				if(collision != null && collision.GetCollider() is TileMap)
+					isonFloor = false;
+				else
+					isonFloor = true;
 			}
 		}
 	}

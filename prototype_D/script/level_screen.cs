@@ -5,13 +5,13 @@ public partial class level_screen : CanvasLayer
 {
 	[Export] private PackedScene levelScene;
 	private level_1 level;
-	private int wave = 9; // ne doit pas etre négatif
+	private int wave = 0; // ne doit pas etre négatif
 	[Export] private PackedScene playerScene;
 	private player joueur;
 	public int scoreJoueur = 10;
 	public int vieJoueur = 50;
 	public int degatJoueur = 5;
-	public float vitesseJoueur = 800.0f;
+	public float vitesseJoueur = 300.0f;
 	public int stunJoueur = 300;
 	private int vie = 100;
 	[Export] private PackedScene escapeScene;

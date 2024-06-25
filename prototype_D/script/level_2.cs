@@ -12,12 +12,14 @@ public partial class level_2 : Node2D
 	public bool secondGame = false;
 	public Random alea;
 	public int count = 0;
-	public int countSpawn;
-	public int whenZoom = 10000;
+	public int countSpawn = 0;
+	public int whenZoom = -10000;
+	public bool isTime = true;
+	public int countTime = 0;
 	public override void _Ready()
 	{
 		alea = new Random();
-		GetNode<player>("Player").Instancier(10, vieJoueur, degatJoueur, vitesseJoueur+200.0f, stunJoueur);
+		GetNode<player>("Player").Instancier(10, vieJoueur, degatJoueur, vitesseJoueur+2200.0f, stunJoueur);
 		GetNode<gui>("GUI").level(10);
 	}
 	public void Instancier(int pv, int life, int damage, float speed, int stun)
@@ -30,7 +32,7 @@ public partial class level_2 : Node2D
 	}
 	public override void _Process(double delta)
 	{
-		if (count == 30 && countSpawn < 1)
+		if (count == 30 && countSpawn < 100 && isTime)
 		{
 			ennemy foe = enemyScene.Instantiate<ennemy>();
 			foe.Scale = new Vector2(5, 5);
@@ -47,8 +49,15 @@ public partial class level_2 : Node2D
 			this.GetNode<Node2D>("ennemies").AddChild(foe);
 			count = 0;
 			countSpawn++;
+			if (countSpawn % 20 == 0)
+				isTime = false;
 		}
-		if (countSpawn == 1)
+		if (!isTime && GetNode<Node2D>("ennemies").GetChildren().Count == 0)
+		{
+			isTime = true;
+			count = 0;
+		}
+		if (countSpawn == 100)
 			win = true;
 		if (win && GetNode<Node2D>("ennemies").GetChildren().Count == 0)
 		{
@@ -64,22 +73,44 @@ public partial class level_2 : Node2D
 		if (secondGame)
 		{
 			Vector2 pos = GetNode<player>("Player").Position;
-			if (Math.Abs(pos.X) + Math.Abs(pos.Y) >= whenZoom && whenZoom < 20000)
+			if (whenZoom == -10000 && pos.Y < -3500)
+				GetNode<player>("Player").up = true;
+			if (whenZoom > -19000 && pos.Y <= whenZoom)
 			{
 				GetNode("Player").GetNode<Camera2D>("Camera2D").Zoom += new Vector2(0.1f, 0.1f);
-				whenZoom += 1000;
+				whenZoom -= 1000;
 			}
-			else if (Math.Abs(pos.X) + Math.Abs(pos.Y) >= whenZoom && whenZoom == 20000)
+			else if (whenZoom == -19000)
 			{
 				GetNode("Player").GetNode<Camera2D>("Camera2D").Zoom = new Vector2(-1f, -1f);
-				whenZoom += 2000;
+				GetNode<player>("Player").up = false;
+				whenZoom -= 500;
 			}
-			else if (Math.Abs(pos.X) + Math.Abs(pos.Y) >= whenZoom && whenZoom == 22000)
+			else if (whenZoom == -19500 && Math.Abs(pos.X) >= 10000)
 			{
 				GetNode<player>("Player").isGravity = true;
-				whenZoom = 0;
+				whenZoom -= 500;
 			}
-			else if (whenZoom == 0 && Math.Abs(pos.X) + Math.Abs(pos.Y) >= whenZoom )
+			else if (whenZoom == -20000 && pos.Y > 10000)
+			{
+				GetNode("Player").GetNode<Camera2D>("Camera2D").Zoom = new Vector2(1f, 1f);
+				whenZoom -= 1000;
+				secondGame = false;
+			}
 		}
 	}
+	private void _on_area_2d_body_entered(Node2D body)
+	{
+		GetNode("Player").GetNode<Camera2D>("Camera2D").Zoom = new Vector2(0.1f, 0.1f);
+	}
+	private void _on_theend_body_entered(Node2D body)
+	{
+		GetTree().ChangeSceneToFile("res://scene/end.tscn");
+	}
 }
+
+
+
+
+
+

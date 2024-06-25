@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://281p17oqsty3"]
+
+[ext_resource type="FontFile" uid="uid://fqjff1o1lgb4" path="res://assets/Kenney Pixel.ttf" id="1_w4xik"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0j1q3"]
+font = ExtResource("1_w4xik")
+font_size = 400
+
+[node name="End" type="CanvasLayer"]
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "THE END"
+label_settings = SubResource("LabelSettings_0j1q3")
